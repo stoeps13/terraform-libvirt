@@ -1,7 +1,8 @@
 
 
-variable "domain"   { default = "virt.local" }
-variable "prefixIP" { default = "192.168.124" }
+variable "domain"   { default = "stoeps.home" }
+variable "prefixIP" { default = "10.0.22" }
+variable "hostname" { default = "test" }
 
 # Use CloudInit to add our ssh-key to the instance
 resource "libvirt_cloudinit_disk" "commoninit" {
@@ -18,7 +19,7 @@ data "template_file" "user_data" {
 
   for_each = var.servers
 
-  template = "${file("${path.module}/cloud_init.cfg")}"
+  template = "${file("${path.module}/cloud_init_centos.cfg")}"
 
   vars = {
     domain   = var.domain
@@ -35,7 +36,7 @@ data "template_file" "network_config" {
 
   for_each = var.servers
 
-  template = file("${path.module}/network_config_static.cfg")
+  template = "${file("${path.module}/network_config.cfg")}"
 
   vars = {
     domain   = var.domain
@@ -84,4 +85,7 @@ resource "libvirt_domain" "host" {
     autoport    = "true"
   }
 
+  xml {
+  	xslt		    = "${file("volume.xsl")}"
+  }
 }

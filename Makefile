@@ -36,4 +36,4 @@ metadata:
 
 ## validate syntax of cloud_init
 validate-cloud-config:
-	cloud-init devel schema --config-file cloud_init.cfg
+	cloud-init devel schema --config-file cloud_init_centos.cfg
