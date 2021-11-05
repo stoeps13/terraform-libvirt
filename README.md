@@ -1,3 +1,5 @@
+# You can find the original repository here: [https://github.com/bodsch/terraform-libvirt](https://github.com/bodsch/terraform-libvirt). I wrote a [blog post](https://stoeps.de/2021/11/05/terraform-kvm-create-environment/) about my changes.
+
 # KVM Provider
 
 ## install provider
